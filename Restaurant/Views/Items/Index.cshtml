@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Item>
+
+<div class="page-header d-md-flex justify-content-between">
+    <div>
+        <h3>Users</h3>
+        <nav aria-label="breadcrumb" class="d-flex align-items-start">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a asp-action="index" asp-controller="home">Items Management</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="mt-2 mt-md-0">
+        <a asp-action="Create" class="btn btn-success" data-toggle="modal" data-target="#mdlNew" title="Add new item">Add new item</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="user-list" class="table table-lg">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor( model => model.ItemID) 
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor( model => model.ItemName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor( model => model.ItemPrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor( model => model.Size)
+                                </th>
+                                <th class="text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ItemID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ItemName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ItemPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Size)
+                                </td>
+
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a href="#" data-toggle="dropdown"
+                                           class="btn btn-floating"
+                                           aria-haspopup="true" aria-expanded="false">
+                                            <i class="ti-more-alt"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item text-success"
+                                             @Html.ActionLink("Edit","Edit", new {id = item.ItemID})
+                                            ></a>
+                                            <a class="dropdown-item text-danger"
+                                               @Html.ActionLink("Delete","Delete", new {id = item.ItemID}, new { onclick = "return confirm('Are you sure to delete this item?');"})
+                                            ></a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).on('click', '.add-size', function(){
+            var size = $('div[for="sizes"]:first').clone();
+
+            size.find('.add-size').remove();
+            $('#frmItem .modal-body').append(size);
+        });
+
+        $(document).on('click', '.remove-size', function () {
+            $(this).closest('div[for="sizes"]').remove();
+        });
+    </script>
+}

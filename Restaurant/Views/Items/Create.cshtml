@@ -1,0 +1,99 @@
+﻿@model Item
+@{
+    ViewBag.Title = Model != null ? "Edit" : "Create";
+}
+
+<h2>@ViewBag.Title Item</h2>
+
+<form asp-action=@ViewBag.Title>
+
+<div asp-validation-summary=All></div>
+
+<div class="mt-2 mt-md-0">
+        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#mdlNew" title="Add new item">Add new item</a>
+</div>
+
+<div id="mdlNew" class="modal fade modal-item" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="modal-title">Add new item</a>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="ti-close"></i>
+                </button>
+            </div>
+            <div id="frmItem">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label asp-for="ItemName" class="control-label">Item Name</label>
+                                <input asp-for="ItemName" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label asp-for="ItemPrice" class="control-label">Item Price</label>
+                                <input asp-for="ItemPrice" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Picture</label>
+                                <input type="file" palceholder="Select image" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" for="sizes">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label asp-for="Size" class="control-label">Size Name</label>
+                                <input asp-for="Size" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="LargeSize" class="control-label">Size Price</label>
+                                <input asp-for="LargeSize" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group" style="margin-top: 17%;">
+                                <a href="Javascript:void(0);" class="btn btn-success add-size">Add</a>
+                                <a href="Javascript:void(0);" class="btn btn-success remove-size btn-danger">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                     <button type="submit" id="btnSaveHours" class="btn btn-primary" title="Save">Save</button>
+                     </div>
+            </div>
+        </div>
+    </div>
+</div>
+      
+</form>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).on('click', '.add-size', function(){
+            var size = $('div[for="sizes"]:first').clone();
+
+            size.find('.add-size').remove();
+            $('#frmItem .modal-body').append(size);
+        });
+
+        $(document).on('click', '.remove-size', function () {
+            $(this).closest('div[for="sizes"]').remove();
+        });
+    </script>
+}
