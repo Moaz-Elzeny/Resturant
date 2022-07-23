@@ -12,7 +12,7 @@
         </nav>
     </div>
     <div class="mt-2 mt-md-0">
-        <a asp-action="Create" class="btn btn-success" data-toggle="modal" data-target="#mdlNew" title="Add new item">Add new item</a>
+        <a href="#" class="btn btn-success" id="addNew" data-toggle="modal" data-target="#mdlNew" title="Add new item">Add new item</a>
     </div>
 </div>
 
@@ -165,5 +165,37 @@
         $(document).on('click', '.remove-size', function () {
             $(this).closest('div[for="sizes"]').remove();
         });
+        $('#addNew').on('click', function () {
+                        $('#mdlNew').modal('show');
+                    });
+                    $('#btnSaveHours').on('click', function () {
+                        var item = $('#Items').val();
+                       console.log(item);
+                       
+                        $.ajax({
+                            url: `/Items/Create`,
+                            data: { name: item },
+                            dataType: 'json',
+                            contentType: "application/json",
+                            type: "GET",
+                            cache: false,
+                            success: function (data) {
+                                //GetItemsTable();
+                                if (data.data === true) {
+                                    //alert("Item hasn't added");
+                                    window.location.href = "/Items/Index";
+
+                                } else {
+                                    alert("Item hasn't added");
+                                }
+                                $('#mdlNew').modal('hide');
+                                $('#Items').val('');
+                            },
+                            error: function () {
+                                $('#Items').val('');
+                                alert("Item hasn't added");
+                            }
+                        });
+                    });
     </script>
 }
