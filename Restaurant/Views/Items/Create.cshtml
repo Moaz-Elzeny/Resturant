@@ -1,4 +1,4 @@
-﻿@model Item
+﻿@*@model Item
 @{
     ViewBag.Title = Model != null ? "Edit" : "Create";
 }
@@ -10,7 +10,7 @@
 <div asp-validation-summary=All></div>
 
 <div class="mt-2 mt-md-0">
-        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#mdlNew" title="Add new item">Add new item</a>
+        <a href="#" class="btn btn-success" id="addNew" data-toggle="modal" data-target="#mdlNew" title="Add new item">Add new item</a>
 </div>
 
 <div id="mdlNew" class="modal fade modal-item" tabindex="-1" role="dialog" aria-hidden="true">
@@ -43,8 +43,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label>Picture</label>
-                                <input type="file" palceholder="Select image" class="form-control" />
+                                <label asp-for="ItemPhoto" class="control-label">Picture</label>
+                                <input asp-for="ItemPhoto" type="file" palceholder="Select image" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -56,20 +56,10 @@
                                 <input asp-for="Size" class="form-control" />
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label asp-for="Size" class="control-label">Size Price</label>
-                                <input asp-for="Size" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="form-group" style="margin-top: 17%;">
-                                <a href="Javascript:void(0);" class="btn btn-success add-size">Add</a>
-                                <a href="Javascript:void(0);" class="btn btn-success remove-size btn-danger">Remove</a>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Close
@@ -95,5 +85,37 @@
         $(document).on('click', '.remove-size', function () {
             $(this).closest('div[for="sizes"]').remove();
         });
+        $('#addNew').on('click', function () {
+                        $('#mdlNew').modal('show');
+                    });
+                    $('#btnSaveHours').on('click', function () {
+                        var item = $('#Items').val();
+                       console.log(item);
+                       
+                        $.ajax({
+                            url: `/Items/Create`,
+                            data: { name: item },
+                            dataType: 'json',
+                            contentType: "application/json",
+                            type: "GET",
+                            cache: false,
+                            success: function (data) {
+                                //GetItemsTable();
+                                if (data.data === true) {
+                                    //alert("Item hasn't added");
+                                    window.location.href = "/Items/Index";
+
+                                } else {
+                                    alert("Item hasn't added");
+                                }
+                                $('#mdlNew').modal('hide');
+                                $('#Items').val('');
+                            },
+                            error: function () {
+                                $('#Items').val('');
+                                alert("Item hasn't been erorr");
+                            }
+                        });
+                    });
     </script>
-}
+}*@

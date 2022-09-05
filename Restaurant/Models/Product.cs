@@ -11,6 +11,27 @@ namespace Restaurant.Models
         [Display(Name ="Product ID")]
         public int ProductID { get; set; }
 
+        [Required]
+        [Column(TypeName = "varchar(150)")]
+        [MaxLength(200)]
+        [Display(Name = "Name")]
+        public string ProductName { get; set; }
+
+        [Required]
+        [Column(TypeName = "varchar(150)")]
+        [MaxLength(200)]
+        [Display(Name = "Size")]
+        public string ProductSize { get; set; }
+
+        [Required]
+        [Column(TypeName = "varchar(150)")]
+        [MaxLength(200)]
+        [Display(Name = "Price")]
+        public string ProductPrice { get; set; }
+
+        [Display (Name ="Photo")]
+        public string ProductPhoto { get; set; }
+
         [ForeignKey("Item")]
         [Required]
         public int ItemID { get; set; }

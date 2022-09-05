@@ -26,10 +26,16 @@ namespace Restaurant.Models
         [Required]
         [Column(TypeName = "varchar(150)")]
         [MaxLength(100)]
-        [Display(Name = "Size")]
-        public string Size { get; set; }
+        [Display(Name = "Size Name")]
+        public string SizeName { get; set; }
+
+        [Required]
+        [Column(TypeName = "varchar(150)")]
+        [MaxLength(100)]
+        [Display(Name = "Size Price")]
+        public string SizePrice { get; set; }
 
         [Display(Name ="Photo")]
-        public byte[] ItemPhoto { get; set; }
+        public string ItemPhoto { get; set; }
     }
 }

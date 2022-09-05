@@ -1,6 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Products";
-}
+﻿@model IEnumerable<Product>;
+
 
 <div class="page-header d-md-flex justify-content-between">
     <div>
@@ -23,14 +22,12 @@
                     <div class="card-body">
                         <div class="my-3">
                             <a href="#" title="Vase">
-                                <img src="../../assets/media/image/products/product1.png"
+                                <img src="../../Img/pngtree-sandwich-burger-vector-png-image_2632085.jpg"
                                      class="img-fluid rounded" alt="Vase">
                             </a>
                         </div>
                         <div class="text-center">
-                            <a href="#">
-                                <h4>Cheese Burger - Small</h4>
-                            </a>
+                            <a @Html.DisplayNameFor(model => model.ItemName)></a>
                             <p>
                                 <span class="text-truncate">1.3 BHD</span>
                             </p>
@@ -81,7 +78,7 @@
                                 <span class="text-truncate">1.4 BHD</span>
                             </p>
                             <div class="mt-2">
-                                <button class="btn btn-primary add-to-card">Add to Cart</button>
+                                <button type="submit" class="btn btn-primary add-to-card">Add to Cart</button>
                             </div>
                         </div>
                     </div>

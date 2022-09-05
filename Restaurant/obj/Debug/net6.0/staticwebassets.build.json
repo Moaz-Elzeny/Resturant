@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6ks5jJ7jguSIaRbW60GAsyOryef/Ft3QKm7+QGRmbLs=",
+  "Hash": "x+5XtRCRL16fN6AxpQwQa3V0eIOm7pxZybsUeKyXqss=",
   "Source": "Restaurant",
   "BasePath": "_content/Restaurant",
   "Mode": "Default",
@@ -2157,6 +2157,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\fonts\\themify.woff"
+    },
+    {
+      "Identity": "D:\\Projects\\Restaurant\\Restaurant\\wwwroot\\Img\\pngtree-sandwich-burger-vector-png-image_2632085.jpg",
+      "SourceId": "Restaurant",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\Restaurant\\Restaurant\\wwwroot\\",
+      "BasePath": "_content/Restaurant",
+      "RelativePath": "Img/pngtree-sandwich-burger-vector-png-image_2632085.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Img\\pngtree-sandwich-burger-vector-png-image_2632085.jpg"
     },
     {
       "Identity": "D:\\Projects\\Restaurant\\Restaurant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

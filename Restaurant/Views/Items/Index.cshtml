@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Item>
+﻿
+
+@model IEnumerable<Item>
 
 <div class="page-header d-md-flex justify-content-between">
     <div>
@@ -26,7 +28,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor( model => model.ItemID) 
+                                    @Html.DisplayNameFor( model => model.ItemID)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor( model => model.ItemName)
@@ -35,7 +37,10 @@
                                     @Html.DisplayNameFor( model => model.ItemPrice)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor( model => model.Size)
+                                    @Html.DisplayNameFor( model => model.SizeName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor( model => model.SizePrice)
                                 </th>
                                 <th class="text-right">Action</th>
                             </tr>
@@ -43,39 +48,43 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ItemID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ItemName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ItemPrice)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Size)
-                                </td>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ItemID)
+                                    </td>
+                                    <td>
+                                        <figure class="avatar avatar-sm mr-2">
+                                            <img src="../../Img/pngtree-sandwich-burger-vector-png-image_2632085.jpg"
+                                                 class="rounded-circle" alt="avatar">
+                                        </figure>
+                                        @Html.DisplayFor(modelItem => item.ItemName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ItemPrice)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SizeName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SizePrice)
+                                    </td>
 
-                                <td class="text-right">
-                                    <div class="dropdown">
-                                        <a href="#" data-toggle="dropdown"
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a href="#" data-toggle="dropdown"
                                            class="btn btn-floating"
                                            aria-haspopup="true" aria-expanded="false">
-                                            <i class="ti-more-alt"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item text-success"
-                                             @Html.ActionLink("Edit","Edit", new {id = item.ItemID})
-                                            ></a>
-                                            <a class="dropdown-item text-danger"
-                                               @Html.ActionLink("Delete","Delete", new {id = item.ItemID}, new { onclick = "return confirm('Are you sure to delete this item?');"})
-                                            ></a>
+                                                <i class="ti-more-alt"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
 
+                                                <a class="dropdown-item text-primary" asp-action="Edit" asp-controller="Items" asp-route-id="@item.ItemID">Edit</a>
+                                                <a class="dropdown-item text-danger" asp-action="Delete" onclick="return confirm('Are you sure to delete this item?')" asp-controller="Items" asp-route-id="@item.ItemID">Delete</a>
+
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -84,6 +93,11 @@
         </div>
     </div>
 </div>
+@{
+    ViewBag.Title = Model != null ? "Edit" : "Create";
+}
+
+<div asp-validation-summary=All></div>
 <div id="mdlNew" class="modal fade modal-item" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -99,7 +113,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Item Name</label>
-                                <input type="text" class="form-control" />
+                                <input id="itemName" type="text" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -107,7 +121,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Price</label>
-                                <input type="text" class="form-control" />
+                                <input id="itemPrice" type="text" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -115,7 +129,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Picture</label>
-                                <input type="file" palceholder="Select image" class="form-control" />
+                                <input id="itemPhoto" type="file" palceholder="Select image" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -124,13 +138,13 @@
                         <div class="col-5">
                             <div class="form-group">
                                 <label>Size Name</label>
-                                <input type="text" class="form-control" />
+                                <input id="sizeName" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Size Price</label>
-                                <input type="text" class="form-control" />
+                                <input id="sizePrice" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="col-3">
@@ -145,7 +159,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Close
                     </button>
-                    <button type="submit" id="btnSaveHours" class="btn btn-primary" title="Save">Save</button>
+                    <button type="submit" id="btnSaveHours" class="btn btn-primary" data-dismiss="modal" title="Save">Save</button>
                 </div>
             </div>
         </div>
@@ -154,48 +168,65 @@
 
 @section Scripts
 {
-    <script type="text/javascript">
-        $(document).on('click', '.add-size', function(){
-            var size = $('div[for="sizes"]:first').clone();
+<script type="text/javascript">
+   
+    $(document).on('click', '.add-size', function(){
+        var size = $('div[for="sizes"]:first').clone();
 
-            size.find('.add-size').remove();
-            $('#frmItem .modal-body').append(size);
-        });
+        size.find('.add-size').remove();
+        $('#frmItem .modal-body').append(size);
+    });
 
-        $(document).on('click', '.remove-size', function () {
-            $(this).closest('div[for="sizes"]').remove();
-        });
-        $('#addNew').on('click', function () {
-                        $('#mdlNew').modal('show');
-                    });
-                    $('#btnSaveHours').on('click', function () {
-                        var item = $('#Items').val();
-                       console.log(item);
+    $(document).on('click', '.remove-size', function () {
+        $(this).closest('div[for="sizes"]').remove();
+    });
+    $('#addNew').on('click', function () {
+                    $('#mdlNew').modal('show');
+                });
+                $('#btnSaveHours').on('click', function () {
+                    
+                    let itemName = $('#itemName').val();
+                    let itemPrice = $('#itemPrice').val();
+                    let itemPhoto = $('#itemPhoto').val();                    
+                    let sizeName = $('#sizeName').val();
+                    let sizePrice = $('#sizePrice').val();
+                    let obj = {"ItemName": itemName,
+                         "ItemPrice": itemPrice,
+                         "SizeName": sizeName,
+                         "SizePrice": sizePrice,
+                         "ItemPhoto": itemPhoto};
+                    let _data = JSON.stringify(obj);
+                    console.log(_data);
+                    //var name = $("#itemName").val();
+                    //if(name == '')
+                    //{
+                    $.ajax({
+                        url:`/Items/Create`,
+                        data:obj,
+                        dataType: 'json',
+                        contentType: "application/json",
+                        type: "Get",
+                    //}
+                    //else{
+                    //    $.ajax({
+                    //    url:`/Items/Edit`,
+                    //    data:obj,
+                    //    dataType: 'json',
+                    //    contentType: "application/json",
+                    //    type: "Get",
+                    //}
+                        success: function (data) {
+                            
+                               alert(`item : ${itemName} created successfully!`);
+
+                                 $('#mdlNew').modal('hide');
+                                window.location.href = "/Items/Index";
+
+                            
+                           
+                        },
                        
-                        $.ajax({
-                            url: `/Items/Create`,
-                            data: { name: item },
-                            dataType: 'json',
-                            contentType: "application/json",
-                            type: "GET",
-                            cache: false,
-                            success: function (data) {
-                                //GetItemsTable();
-                                if (data.data === true) {
-                                    //alert("Item hasn't added");
-                                    window.location.href = "/Items/Index";
-
-                                } else {
-                                    alert("Item hasn't added");
-                                }
-                                $('#mdlNew').modal('hide');
-                                $('#Items').val('');
-                            },
-                            error: function () {
-                                $('#Items').val('');
-                                alert("Item hasn't added");
-                            }
-                        });
                     });
-    </script>
+                });
+</script>
 }

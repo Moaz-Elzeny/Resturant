@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+    @model IEnumerable<Item>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@ViewData["Title"] - Restaurant</title>
+    <title>@ViewData["Title"] = Restaurant</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="~/assets/media/image/favicon.png" />
@@ -62,65 +63,69 @@
                                             <a href="#" class="px-4 py-3 list-group-item d-flex">
                                                 <div class="flex-shrink-0">
                                                     <figure class="avatar mr-3">
-                                                        <img class="rounded" src="../../assets/media/image/products/product6.png"
+                                                        <img class="rounded" src="../../Img/pngtree-sandwich-burger-vector-png-image_2632085.jpg"
                                                              alt="Canon 4000D 18-55 MM">
                                                     </figure>
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <p class="mb-0 line-height-20 d-flex justify-content-between">
-                                                        Canon 4000D 18-55 MM
+                                                        @Html.DisplayNameFor(m => m.ItemName)
                                                         <i title="Close" data-toggle="tooltip"
+                                                        asp-action="Delete" onclick="return confirm('Are you sure to delete this item?')" asp-controller="Items"
                                                            class="hide-show-toggler-item small ti-close"></i>
                                                     </p>
-                                                    <span class="text-muted small">X $1,200</span>
+                                                   <span class="text-muted small">@Html.DisplayNameFor(m => m.ItemPrice)</span>
                                                 </div>
                                             </a>
                                             <a href="#" class="px-4 py-3 list-group-item d-flex">
                                                 <div class="flex-shrink-0">
                                                     <figure class="avatar mr-3">
-                                                        <img class="rounded" src="../../assets/media/image/products/product3.png"
+                                                        <img class="rounded" src="../../Img/pngtree-sandwich-burger-vector-png-image_2632085.jpg"
                                                              alt="pineapple">
                                                     </figure>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <p class="mb-0 line-height-20 d-flex justify-content-between">
-                                                        Snopy SN-BT96 Pretty
+                                                    <div class="mb-0 line-height-20 d-flex justify-content-between">
+                                                        @Html.DisplayNameFor(m => m.ItemName)
                                                         <i title="Close" data-toggle="tooltip"
+                                                        asp-action="Delete" onclick="return confirm('Are you sure to delete this item?')" asp-controller="Items"
                                                            class="hide-show-toggler-item small ti-close"></i>
-                                                    </p>
-                                                    <span class="text-muted small">X $250</span>
+                                                    </div>
+                                                     <span class="text-muted small">@Html.DisplayNameFor(m => m.ItemPrice)</span>
                                                 </div>
                                             </a>
                                             <a href="#" class="px-4 py-3 list-group-item d-flex">
                                                 <div class="flex-shrink-0">
                                                     <figure class="avatar mr-3">
-                                                        <img src="../../assets/media/image/products/product7.png"
+                                                        <img src="../../Img/pngtree-sandwich-burger-vector-png-image_2632085.jpg"
                                                              class="rounded" alt="pineapple">
                                                     </figure>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <p class="mb-0 line-height-20 d-flex justify-content-between">
-                                                        Lenovo Tab E10 TB-X104F 32GB
+                                                    <div class="mb-0 line-height-20 d-flex justify-content-between">
+                                                        @Html.DisplayNameFor(m => m.ItemName)
                                                         <i title="Close" data-toggle="tooltip"
+                                                        asp-action="Delete" onclick="return confirm('Are you sure to delete this item?')" asp-controller="Items"
                                                            class="hide-show-toggler-item small ti-close"></i>
-                                                    </p>
-                                                    <span class="text-muted small">X $100</span>
+                                                    </div>
+                                                    <span class="text-muted small">@Html.DisplayNameFor(m => m.ItemPrice)</span>
                                                 </div>
                                             </a>
                                             <a href="#" class="px-4 py-3 list-group-item d-flex">
                                                 <div class="flex-shrink-0">
                                                     <figure class="avatar mr-3">
-                                                        <img class="rounded" src="../../assets/media/image/products/product6.png"
+                                                        <img class="rounded" src="../../Img/pngtree-sandwich-burger-vector-png-image_2632085.jpg"
                                                              alt="Canon 4000D 18-55 MM">
                                                     </figure>
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <p class="mb-0 line-height-20 d-flex justify-content-between">
-                                                        Canon 4000D 18-55 MM
+                                                        @Html.DisplayNameFor(m => m.ItemName)
                                                         <i title="Close" data-toggle="tooltip"
+                                                        asp-action="Delete" onclick="return confirm('Are you sure to delete this item?')" asp-controller="Items"
                                                            class="hide-show-toggler-item small ti-close"></i>
                                                     </p>
-                                                    <span class="text-muted small">X $1,200</span>
+                                                    <span class="text-muted small">@Html.DisplayNameFor(m => m.ItemPrice)</span>
                                                 </div>
                                             </a>
                                         </div>
@@ -132,11 +137,11 @@
                                         </p>
                                         <div class="row d-flex justify-content-between align-items-center mb-1 font-weight-bold">
                                             <span>Customer Name</span>
-                                            <input type="text" class="form-control" value="" />
+                                            <input id="CustomerName" type="text" class="form-control" value="" />
                                         </div>
                                         <div class="row d-flex justify-content-between align-items-center mb-1 font-weight-bold">
                                             <span>Customer Phone</span>
-                                            <input type="text" class="form-control" value="" />
+                                            <input id="CustomerPhone" type="text" class="form-control" value="" />
                                         </div>
                                         <div class="row d-flex justify-content-between align-items-center mb-1 font-weight-bold">
                                             <input type="button" class="btn btn-success btn-block" value="Place order" />
